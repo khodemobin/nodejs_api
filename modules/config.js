@@ -7,7 +7,6 @@ module.exports = {
 			api: path.resolve('./modules/controllers/api'),
 			web: path.resolve('./modules/controllers')
 		},
-		model: path.resolve('./modules/models')
-
+		model: path.resolve('./modules/models'),
 	},
 };

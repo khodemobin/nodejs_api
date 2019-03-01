@@ -1,8 +1,10 @@
-const config = require('./../../../../config');
+const config = require('./../../config');
 const Course = require(`${config.path.model}/course`);
 
-module.exports = new class Controller {
+module.exports = class Controller {
     constructor() {
-
+        this.model = {
+            Course
+        };
     }
 }

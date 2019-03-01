@@ -14,7 +14,7 @@ const AdminCourseController = require(`${apiDir}/v1/Admin/CourseController`);
 
 router.get('/', HomeController.index);
 //< admin routes
-adminRouter.get('/courses', AdminCourseController.index);
+adminRouter.get('/courses', AdminCourseController.index.bind(AdminCourseController));
 adminRouter.get('/courses/:id', AdminCourseController.single);
 adminRouter.post('/courses', AdminCourseController.store);
 adminRouter.put('/courses/:id', AdminCourseController.update);
