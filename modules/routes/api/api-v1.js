@@ -7,12 +7,14 @@ const {
 } = config.path.controller;
 
 const HomeController = require(`${apiDir}/v1/HomeController`);
+const CourseController = require(`${apiDir}/v1/CourseController`);
 const AdminCourseController = require(`${apiDir}/v1/Admin/CourseController`);
 
 
 
 
 router.get('/', HomeController.index);
+router.get('/courses', CourseController.index.bind(CourseController));
 //< admin routes
 adminRouter.get('/courses', AdminCourseController.index.bind(AdminCourseController));
 adminRouter.get('/courses/:id', AdminCourseController.single);
