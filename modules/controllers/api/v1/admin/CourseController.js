@@ -17,6 +17,16 @@ module.exports = new class CourseController extends Controller {
     }
 
     store(req, res) {
+        //Validation
+        req.checkBody('title', 'عنوان نمیتواند خالی بماند').notEmpty();
+        req.checkBody('body', 'متن نمیتواند خالی بماند').notEmpty();
+        req.checkBody('iamge', 'عکس نمیتواند خالی بماند').notEmpty();
+        req.checkBody('price', 'قیمت نمیتواند خالی بماند').notEmpty();
+
+        this.escapeAndTrim(req, 'title price image')
+        if (this.showValidationErrors(req, res))
+            return;
+
         let newCourse = new this.model.Course({
             title: req.body.title,
             body: req.body.body,
@@ -29,9 +39,13 @@ module.exports = new class CourseController extends Controller {
     }
 
     update(req, res) {
+        req.checkParams('id', 'ای دی وارد شده صحیح نیست').isMongoId();
+        if (this.showValidationErrors(req, res))
+            return;
         this.model.Course.findByIdAndUpdate(req.params.id, {
             title: "course three",
         }, (err, course) => {
+            if (err) throw err;  
             res.json("success");
         });
     }
